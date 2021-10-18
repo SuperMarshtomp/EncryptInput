@@ -3,26 +3,30 @@
  * @Author: chenyongxuan
  * @Date: 2021-10-18 10:00:31
  * @LastEditors: chenyongxuan
- * @LastEditTime: 2021-10-18 17:09:37
+ * @LastEditTime: 2021-10-18 22:39:37
 -->
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
-    <encrypt-input v-model="msg" publicKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNNorgFngK1zjHOnQlIUh5NjOxZIiEPZ8Knu6B/IyY0LBRToo1TZC7/nK6j8on/2sBdv5nFuTwlOpW9UL8C4yZJdjTwYXn5X+wZZsz1RXNI5zjhSXuGeYzF7WhxusKo6zrR6b0IMNg2W016PWU3UkjOXxoaIGkMN77oIorPP5bHQIDAQAB"></encrypt-input>
+    <p>{{ msg }}</p>
+    <encrypt-input
+      :inputStyle="{ width: '250px' }"
+      v-model="msg"
+      publicKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNNorgFngK1zjHOnQlIUh5NjOxZIiEPZ8Knu6B/IyY0LBRToo1TZC7/nK6j8on/2sBdv5nFuTwlOpW9UL8C4yZJdjTwYXn5X+wZZsz1RXNI5zjhSXuGeYzF7WhxusKo6zrR6b0IMNg2W016PWU3UkjOXxoaIGkMN77oIorPP5bHQIDAQAB"
+    ></encrypt-input>
   </div>
 </template>
 
 <script>
-import EncryptInput from "./components/EncryptInput.vue";
+import EncryptInput from "./components/EncryptInput.vue"
 export default {
   name: "app",
   components: { EncryptInput },
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
-    };
-  }
-};
+      msg: "Welcome to Your Vue.js App",
+    }
+  },
+}
 </script>
 
 <style lang="scss">
