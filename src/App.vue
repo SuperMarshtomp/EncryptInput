@@ -3,19 +3,21 @@
  * @Author: chenyongxuan
  * @Date: 2021-10-18 10:00:31
  * @LastEditors: chenyongxuan
- * @LastEditTime: 2021-10-19 15:38:03
+ * @LastEditTime: 2021-10-19 18:28:54
 -->
 <template>
-  <encrypt-input
-    :inputStyle="{ width: '250px' }"
-    v-model="msg"
-    :type="`text`"
-    :isEdit="true"
-    :requireDefaultRules="true"
-    :requireEncrypt="true"
-    publicKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNNorgFngK1zjHOnQlIUh5NjOxZIiEPZ8Knu6B/IyY0LBRToo1TZC7/nK6j8on/2sBdv5nFuTwlOpW9UL8C4yZJdjTwYXn5X+wZZsz1RXNI5zjhSXuGeYzF7WhxusKo6zrR6b0IMNg2W016PWU3UkjOXxoaIGkMN77oIorPP5bHQIDAQAB"
-  >
-  </encrypt-input>
+  <div>
+    <encrypt-input
+      :input-style="{ width: '250px' }"
+      ref="einput"
+      v-model="msg"
+      :require-default-rules="true"
+      :require-encrypt="true"
+      public-key="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNNorgFngK1zjHOnQlIUh5NjOxZIiEPZ8Knu6B/IyY0LBRToo1TZC7/nK6j8on/2sBdv5nFuTwlOpW9UL8C4yZJdjTwYXn5X+wZZsz1RXNI5zjhSXuGeYzF7WhxusKo6zrR6b0IMNg2W016PWU3UkjOXxoaIGkMN77oIorPP5bHQIDAQAB"
+    >
+    </encrypt-input>
+    <p>{{ msg }}</p>
+  </div>
 </template>
 
 <script>
@@ -28,6 +30,11 @@ export default {
       msg: "Paas@2020",
     }
   },
+  methods: {
+    encrypt() {
+      this.$refs['einput'].encryptPassword()
+    }
+  }
 }
 </script>
 

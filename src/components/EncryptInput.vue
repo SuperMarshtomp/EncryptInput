@@ -3,7 +3,7 @@
  * @Author: chenyongxuan
  * @Date: 2021-10-18 10:06:59
  * @LastEditors: chenyongxuan
- * @LastEditTime: 2021-10-19 15:36:43
+ * @LastEditTime: 2021-10-19 18:18:01
 -->
 <template>
   <el-popover
@@ -84,11 +84,11 @@ export default {
       type: Boolean,
       default: false,
     },
-    "require-encrypt": {
+    requireEncrypt: {
       type: Boolean,
       default: false,
     },
-    "require-default-rules": {
+    requireDefaultRules: {
       type: Boolean,
       default: false,
     },
@@ -96,12 +96,12 @@ export default {
       type: Boolean,
       default: false,
     },
-    "encrypt-method": Function,
-    "input-style": [String, Object],
+    encryptMethod: Function,
+    inputStyle: [String, Object],
     type: String,
     maxlength: Number,
     minlength: Number,
-    "show-word-limit": {
+    showWordLimit: {
       type: Boolean,
       default: false,
     },
@@ -110,15 +110,15 @@ export default {
       default: false,
     },
     size: String,
-    "prefix-icon": String,
-    "suffix-icon": String,
+    prefixIcon: String,
+    suffixIcon: String,
     rows: Number,
     autosize: [Object, Boolean],
     autocomplete: {
       type: String,
       default: "off",
     },
-    "auto-complete": {
+    autoComplete: {
       type: String,
       default: "off",
     },
@@ -135,7 +135,7 @@ export default {
     form: String,
     label: String,
     tabindex: String,
-    "validate-event": String,
+    validateEvent: String,
   },
   data() {
     return {
@@ -198,7 +198,9 @@ export default {
     encryptPassword(val = null) {
       const encryptPwd = this.encryptMethod
         ? this.encryptMethod(val)
-        : this.encrypt.encrypt(val || this.password)
+        : this.publicKey
+        ? this.encrypt.encrypt(val || this.password)
+        : val || this.password
       this.$emit("input", encryptPwd)
       return encryptPwd
     },
@@ -221,7 +223,7 @@ export default {
             ? event
             : this.encryptMethod
             ? this.encryptMethod(val)
-            : this.requireEncrypt
+            : this.requireEncrypt && this.publicKey
             ? this.encrypt.encrypt(val)
             : val || null
         )
