@@ -3,7 +3,7 @@
  * @Author: chenyongxuan
  * @Date: 2021-10-18 10:06:59
  * @LastEditors: chenyongxuan
- * @LastEditTime: 2021-10-19 14:54:44
+ * @LastEditTime: 2021-10-19 15:36:43
 -->
 <template>
   <el-popover
@@ -44,7 +44,20 @@
         @clear="$emit('clear')"
         @focus="handleFocus"
         @blur="handleInputBlur"
-      ></el-input>
+      >
+        <template v-if="type === 'text'" slot="prefix">
+          <slot name="prefix"></slot>
+        </template>
+        <template v-if="type === 'text'" slot="suffix">
+          <slot name="suffix"></slot>
+        </template>
+        <template v-if="type === 'text'" slot="prepend">
+          <slot name="prepend"></slot>
+        </template>
+        <template v-if="type === 'text'" slot="append">
+          <slot name="append"></slot>
+        </template>
+      </el-input>
     </template>
   </el-popover>
 </template>
@@ -71,11 +84,11 @@ export default {
       type: Boolean,
       default: false,
     },
-    requireEncrypt: {
+    "require-encrypt": {
       type: Boolean,
       default: false,
     },
-    requireDefaultRules: {
+    "require-default-rules": {
       type: Boolean,
       default: false,
     },
@@ -83,8 +96,46 @@ export default {
       type: Boolean,
       default: false,
     },
-    encryptMethod: Function,
-    inputStyle: [String, Object],
+    "encrypt-method": Function,
+    "input-style": [String, Object],
+    type: String,
+    maxlength: Number,
+    minlength: Number,
+    "show-word-limit": {
+      type: Boolean,
+      default: false,
+    },
+    clearable: {
+      type: Boolean,
+      default: false,
+    },
+    size: String,
+    "prefix-icon": String,
+    "suffix-icon": String,
+    rows: Number,
+    autosize: [Object, Boolean],
+    autocomplete: {
+      type: String,
+      default: "off",
+    },
+    "auto-complete": {
+      type: String,
+      default: "off",
+    },
+    name: String,
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
+    resize: String,
+    autofocus: {
+      type: Boolean,
+      default: false,
+    },
+    form: String,
+    label: String,
+    tabindex: String,
+    "validate-event": String,
   },
   data() {
     return {
