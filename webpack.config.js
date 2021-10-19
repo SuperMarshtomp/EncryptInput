@@ -9,11 +9,14 @@ var path = require("path")
 var webpack = require("webpack")
 
 module.exports = {
-  entry: "./src/main.js",
+  entry: process.env.NODE_ENV === "development" ? "./src/main.js" : './index.js',
   output: {
     path: path.resolve(__dirname, "./dist"),
     publicPath: "/dist/",
-    filename: "index.js",
+    filename: 'encrypt-input.js',
+    library: 'EncryptInput',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module: {
     rules: [
