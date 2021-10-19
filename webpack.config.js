@@ -3,31 +3,31 @@
  * @Author: chenyongxuan
  * @Date: 2021-10-18 10:00:31
  * @LastEditors: chenyongxuan
- * @LastEditTime: 2021-10-18 15:52:00
+ * @LastEditTime: 2021-10-19 09:55:50
  */
-var path = require("path");
-var webpack = require("webpack");
+var path = require("path")
+var webpack = require("webpack")
 
 module.exports = {
   entry: "./src/main.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
     publicPath: "/dist/",
-    filename: "build.js"
+    filename: "index.js",
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ["vue-style-loader", "css-loader"]
+        use: ["vue-style-loader", "css-loader"],
       },
       {
         test: /\.scss$/,
-        use: ["vue-style-loader", "css-loader", "sass-loader"]
+        use: ["vue-style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.sass$/,
-        use: ["vue-style-loader", "css-loader", "sass-loader?indentedSyntax"]
+        use: ["vue-style-loader", "css-loader", "sass-loader?indentedSyntax"],
       },
       {
         test: /\.vue$/,
@@ -41,65 +41,67 @@ module.exports = {
             sass: [
               "vue-style-loader",
               "css-loader",
-              "sass-loader?indentedSyntax"
-            ]
+              "sass-loader?indentedSyntax",
+            ],
           },
-          
+
           // other vue-loader options go here
-        }
+        },
       },
       {
         test: /\.js$/,
         loader: "babel-loader",
-        exclude: /node_modules/
+        options: {
+          presets: ["es2015"],
+        },
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: "file-loader",
         options: {
-          name: "[name].[ext]?[hash]"
-        }
+          name: "[name].[ext]?[hash]",
+        },
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
-        loader: "file-loader"
-      }
-    ]
+        loader: "file-loader",
+      },
+    ],
   },
   resolve: {
     alias: {
-      vue$: "vue/dist/vue.esm.js"
+      vue$: "vue/dist/vue.esm.js",
     },
-    extensions: ["*", ".js", ".vue", ".json"]
+    extensions: ["*", ".js", ".vue", ".json"],
   },
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
   },
   performance: {
-    hints: false
+    hints: false,
   },
-  devtool: "#eval-source-map"
-};
+  devtool: "#eval-source-map",
+}
 
 if (process.env.NODE_ENV === "production") {
-  module.exports.devtool = "#source-map";
+  module.exports.devtool = "#source-map"
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: '"production"'
-      }
+        NODE_ENV: '"production"',
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
+      sourceMap: false,
       compress: {
-        warnings: false
-      }
+        warnings: false,
+      },
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ]);
+      minimize: true,
+    }),
+  ])
 }

@@ -23,7 +23,7 @@ export default {
   components: { EncryptInput },
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
+      msg: "Paas@2020",
     }
   },
 }
