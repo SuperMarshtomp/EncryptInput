@@ -3,7 +3,7 @@
  * @Author: chenyongxuan
  * @Date: 2021-10-18 10:06:59
  * @LastEditors: chenyongxuan
- * @LastEditTime: 2021-10-18 22:47:12
+ * @LastEditTime: 2021-10-19 14:54:44
 -->
 <template>
   <el-popover
@@ -11,7 +11,8 @@
     width="200"
     trigger="manual"
     v-model="popoverVisible"
-    :disabled="hasRules"
+    :disabled="!requireDefaultRules"
+    class="el-input"
   >
     <div class="popover-tips">
       <p class="popover-tips__title">需要包含以下规则：</p>
@@ -72,12 +73,11 @@ export default {
     },
     requireEncrypt: {
       type: Boolean,
-      default: true,
+      default: false,
     },
-    rules: {
-      default() {
-        return {}
-      },
+    requireDefaultRules: {
+      type: Boolean,
+      default: false,
     },
     disabled: {
       type: Boolean,
@@ -90,18 +90,13 @@ export default {
     return {
       password: "",
       defaultPwd: "********",
-      defaultRules: Array.isArray(this.rules) ? this.rules : defaultRules,
+      defaultRules: !this.requireDefaultRules ? [] : defaultRules,
       popoverVisible: false,
       disabledInput: false,
       isPass: true,
       encrypt: new JSEncrypt(),
       tempPassword: "",
     }
-  },
-  computed: {
-    hasRules() {
-      return Array.isArray(this.rules)
-    },
   },
   watch: {
     isEdit(newVal, oldVal) {
@@ -149,10 +144,17 @@ export default {
     sameAsDefaultPwd(pwd) {
       return pwd === this.defaultPwd
     },
+    encryptPassword(val = null) {
+      const encryptPwd = this.encryptMethod
+        ? this.encryptMethod(val)
+        : this.encrypt.encrypt(val || this.password)
+      this.$emit("input", encryptPwd)
+      return encryptPwd
+    },
     emitInput(val, type = "input", event = null) {
-      this.defaultRules.forEach(rule => {
+      this.defaultRules.forEach((rule) => {
         rule.validator &&
-          rule.validator(rule, val, err => {
+          rule.validator(rule, val, (err) => {
             if (!err) {
               this.$set(rule, "isPass", true)
             } else {
@@ -160,7 +162,7 @@ export default {
             }
           })
       })
-      if (this.defaultRules.filter(rule => !rule.isPass).length === 0) {
+      if (this.defaultRules.filter((rule) => !rule.isPass).length === 0) {
         this.isPass = true
         this.$emit(
           type,
@@ -220,7 +222,10 @@ export default {
     border-color: #f56c6c;
   }
 }
-.el-popper .popper__arrow {
-  display: none;
+.el-popper {
+  padding: 10px;
+  .popper__arrow {
+    display: none;
+  }
 }
 </style>
