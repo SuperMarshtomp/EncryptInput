@@ -3,7 +3,7 @@
  * @Author: chenyongxuan
  * @Date: 2021-10-18 10:06:59
  * @LastEditors: chenyongxuan
- * @LastEditTime: 2021-10-19 18:18:01
+ * @LastEditTime: 2021-11-19 15:17:07
 -->
 <template>
   <el-popover
@@ -24,7 +24,7 @@
             'el-icon-error': !ruleItem.isPass,
             'popover-tips__icon-error': !ruleItem.isPass,
           }"
-        />&nbsp;{{ ruleItem.message }}
+        />{{ ruleItem.message }}
       </p>
     </div>
     <template slot="reference">
@@ -39,6 +39,7 @@
         ref="passwordInput"
         :show-password="!sameAsDefaultPwd(password) && !!password"
         :clearable="false"
+        v-on="$listeners"
         @change="handleInputChange"
         @input="handleInputInput"
         @clear="$emit('clear')"
@@ -273,12 +274,6 @@ export default {
 .not-pass {
   .el-input__inner {
     border-color: #f56c6c;
-  }
-}
-.el-popper {
-  padding: 10px;
-  .popper__arrow {
-    display: none;
   }
 }
 </style>

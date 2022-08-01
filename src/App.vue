@@ -3,20 +3,20 @@
  * @Author: chenyongxuan
  * @Date: 2021-10-18 10:00:31
  * @LastEditors: chenyongxuan
- * @LastEditTime: 2021-10-19 18:28:54
+ * @LastEditTime: 2021-10-21 14:53:41
 -->
 <template>
   <div>
     <encrypt-input
-      :input-style="{ width: '250px' }"
+      :input-style="{ width: '300px' }"
       ref="einput"
       v-model="msg"
       :require-default-rules="true"
       :require-encrypt="true"
-      public-key="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNNorgFngK1zjHOnQlIUh5NjOxZIiEPZ8Knu6B/IyY0LBRToo1TZC7/nK6j8on/2sBdv5nFuTwlOpW9UL8C4yZJdjTwYXn5X+wZZsz1RXNI5zjhSXuGeYzF7WhxusKo6zrR6b0IMNg2W016PWU3UkjOXxoaIGkMN77oIorPP5bHQIDAQAB"
+      public-key="xxx"
     >
     </encrypt-input>
-    <p>{{ msg }}</p>
+    <!-- <p style="width: 300px;word-wrap:break-word;">密文：{{ msg }}</p> -->
   </div>
 </template>
 
@@ -32,9 +32,9 @@ export default {
   },
   methods: {
     encrypt() {
-      this.$refs['einput'].encryptPassword()
-    }
-  }
+      this.$refs["einput"].encryptPassword()
+    },
+  },
 }
 </script>
 
