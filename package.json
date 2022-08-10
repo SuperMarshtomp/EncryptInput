@@ -1,12 +1,24 @@
 {
   "name": "encrypt-input",
   "description": "A Vue.js project",
-  "version": "1.0.6",
-  "author": "chenyongxuan <chenyongxuan@chinatelecom.cn>",
+  "version": "1.0.7",
+  "author": "SuperMarshtomp <yongxuan_chen@foxmail.com>",
   "license": "MIT",
   "private": false,
   "main": "dist/encrypt-input.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vue",
+    "jsencrypt",
+    "element-ui",
+    "js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SuperMarshtomp/EncryptInput.git"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"

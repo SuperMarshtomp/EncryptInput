@@ -5,7 +5,7 @@
  * @LastEditors: chenyongxuan
  * @LastEditTime: 2021-10-19 12:53:13
  */
-import EncryptInput from "./dist/encrypt-input"
+import EncryptInput from "./src/components/EncryptInput.vue"
 
 EncryptInput.install = (Vue) => {
   if (!Vue) {
