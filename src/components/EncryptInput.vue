@@ -156,11 +156,6 @@ export default {
         this.password = this.defaultPwd
       } else this.password = this.value
     },
-    value(newVal, oldVal) {
-      // if (!this.isEdit) {
-      //   this.password = newVal;
-      // }
-    },
   },
   created() {
     if (this.isEdit) {
@@ -177,11 +172,6 @@ export default {
       this.disabledInput = true
     }
     this.isPass = true
-  },
-  mounted() {
-    // this.$nextTick(() => {
-    //   this.$refs.clearValidate();
-    // });
   },
   methods: {
     focus() {

@@ -7,16 +7,16 @@
 -->
 <template>
   <div>
+    <el-input v-model="account"></el-input>
     <encrypt-input
       :input-style="{ width: '300px' }"
       ref="einput"
-      v-model="msg"
+      v-model="pwd"
       :require-default-rules="true"
       :require-encrypt="true"
       public-key="xxx"
     >
     </encrypt-input>
-    <!-- <p style="width: 300px;word-wrap:break-word;">密文：{{ msg }}</p> -->
   </div>
 </template>
 
@@ -27,7 +27,8 @@ export default {
   components: { EncryptInput },
   data() {
     return {
-      msg: "Paas@2020",
+      account: "",
+      pwd: "",
     }
   },
   methods: {

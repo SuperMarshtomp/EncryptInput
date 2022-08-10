@@ -5,13 +5,13 @@
  * @LastEditors: chenyongxuan
  * @LastEditTime: 2021-10-19 12:53:13
  */
-import EncryptInput from "./src/components/EncryptInput.vue"
-import _Vue from "vue"
+import EncryptInput from "./dist/encrypt-input"
 
 EncryptInput.install = (Vue) => {
   if (!Vue) {
-    window.Vue = Vue = _Vue
+    alert("encrypt-input need vue2!")
+  } else {
+    Vue.component(EncryptInput.name, EncryptInput)
   }
-  Vue.component(EncryptInput.name, EncryptInput)
 }
 export default EncryptInput
