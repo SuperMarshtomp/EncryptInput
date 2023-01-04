@@ -39,7 +39,6 @@
         ref="passwordInput"
         :show-password="!sameAsDefaultPwd(password) && !!password"
         :clearable="false"
-        v-on="$listeners"
         @change="handleInputChange"
         @input="handleInputInput"
         @clear="$emit('clear')"
