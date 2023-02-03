@@ -191,7 +191,7 @@ export default {
         : this.publicKey
         ? this.encrypt.encrypt(val || this.password)
         : val || this.password
-      this.$emit("input", encryptPwd)
+      // this.$emit("input", encryptPwd)
       return encryptPwd
     },
     emitInput(val, type = "input", event = null) {
