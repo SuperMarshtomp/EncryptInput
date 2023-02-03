@@ -38,7 +38,7 @@ export const validateLength = (rule, value, callback) => {
 };
 
 export const validateWord = (rule, value, callback) => {
-  if (!/^[A-Za-z0-9~!@#$%^&*()_\+{\[\]}|\\;:,.'"?/<>]+$/.test(value)) {
+  if (!/^[A-Za-z0-9~!@#$%^&*()_\+\-{\[\]}|\\;:,.'"?/<>]+$/.test(value)) {
     callback(new Error("有效字符为：字母、数字和英文下的特殊字符（除空格）"));
   } else {
     callback();
