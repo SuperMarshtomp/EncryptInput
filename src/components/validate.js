@@ -7,11 +7,11 @@ export const passwordRule = `
 `;
 
 let chains = [
-  "1234567890",
-  "qwertyuiop",
-  "asdfghjkl",
-  "zxcvbnm",
-  "!@#$%^&*()"
+  "1234567890-=",
+  "qwertyuiop[]\\",
+  "asdfghjkl;'",
+  "zxcvbnm,./",
+  "!@#$%^&*()_+"
 ];
 chains = [...chains, ...chains.map(str => str.split('').reverse().join(''))]
 
