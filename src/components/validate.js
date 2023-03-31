@@ -6,13 +6,14 @@ export const passwordRule = `
 4.密码不能使用连续3个及以上键位排序字符，如123，Qwe等
 `;
 
-const chains = [
+let chains = [
   "1234567890",
   "qwertyuiop",
   "asdfghjkl",
   "zxcvbnm",
   "!@#$%^&*()"
 ];
+chains = [...chains, ...chains.map(str => str.split('').reverse().join(''))]
 
 const chainInclude = function(pwd) {
   if (!pwd) return false;
